@@ -1,11 +1,194 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const links = [
+	{ id: "001", name: "Blueprint", url: "https://blueprint.byjennyzhu.com", description: "STRATEGY & RESEARCH" },
+	{ id: "002", name: "Movement", url: "https://movement.byjennyzhu.com", description: "PHYSICAL PRACTICE" },
+];
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Jenny Zhu">
+	<main>
+		<header>
+			<nav>
+				<a href="/cv">CV</a>
+			</nav>
+		</header>
+
+		<section class="hero">
+			<p class="label">THE WORK & WORLD OF</p>
+			<h1>Jenny Zhu</h1>
+		</section>
+
+		<section class="index">
+			<div class="table-header">
+				<span class="col-no">NO.</span>
+				<span class="col-name">PROJECT</span>
+				<span class="col-detail">DETAILS</span>
+				<span class="col-link"></span>
+			</div>
+			<hr />
+			{links.map(link => (
+				<a href={link.url} class="table-row" target="_blank" rel="noopener">
+					<span class="col-no mono">[{link.id}]</span>
+					<span class="col-name project-name">{link.name}</span>
+					<span class="col-detail mono">{link.description}</span>
+					<span class="col-link arrow">&rarr;</span>
+				</a>
+			))}
+			<hr />
+		</section>
+
+		<footer>
+			<p class="mono">&copy; 2026</p>
+		</footer>
+	</main>
 </Layout>
+
+<style>
+	main {
+		max-width: 720px;
+		margin: 0 auto;
+		padding: 3rem 2rem;
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+	}
+
+	header {
+		display: flex;
+		justify-content: flex-end;
+		margin-bottom: 6rem;
+	}
+
+	header nav a {
+		font-size: 0.8rem;
+		font-weight: 500;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		padding-bottom: 2px;
+		border-bottom: 1px solid #1a1a1a;
+		transition: opacity 0.2s ease;
+	}
+
+	header nav a:hover {
+		opacity: 0.5;
+	}
+
+	.label {
+		font-size: 0.75rem;
+		font-weight: 500;
+		letter-spacing: 0.15em;
+		text-transform: uppercase;
+		color: #888;
+		margin-bottom: 0.75rem;
+	}
+
+	h1 {
+		font-size: 3rem;
+		font-weight: 400;
+		letter-spacing: -0.02em;
+		margin: 0 0 1rem 0;
+		line-height: 1.1;
+	}
+
+	.hero {
+		margin-bottom: 5rem;
+	}
+
+	.mono {
+		font-family: 'IBM Plex Mono', monospace;
+	}
+
+	/* Table layout */
+	.index {
+		flex: 1;
+	}
+
+	.table-header {
+		display: grid;
+		grid-template-columns: 60px 1fr 1fr 30px;
+		gap: 1rem;
+		font-size: 0.7rem;
+		font-weight: 500;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: #999;
+		padding-bottom: 0.75rem;
+	}
+
+	hr {
+		border: none;
+		border-top: 1px solid #1a1a1a;
+		margin: 0;
+	}
+
+	.table-row {
+		display: grid;
+		grid-template-columns: 60px 1fr 1fr 30px;
+		gap: 1rem;
+		align-items: baseline;
+		padding: 1.25rem 0;
+		border-bottom: 1px solid #ddd5cb;
+		transition: opacity 0.2s ease;
+	}
+
+	.table-row:hover {
+		opacity: 0.6;
+	}
+
+	.col-no {
+		font-size: 0.85rem;
+		color: #888;
+	}
+
+	.project-name {
+		font-size: 1.15rem;
+		font-weight: 500;
+		font-style: italic;
+	}
+
+	.col-detail {
+		font-size: 0.75rem;
+		letter-spacing: 0.08em;
+		color: #666;
+	}
+
+	.arrow {
+		font-size: 1rem;
+		opacity: 0.3;
+		transition: opacity 0.2s ease;
+		text-align: right;
+	}
+
+	.table-row:hover .arrow {
+		opacity: 1;
+	}
+
+	footer {
+		margin-top: 6rem;
+		padding-top: 1.5rem;
+		border-top: 1px solid #ddd5cb;
+	}
+
+	footer p {
+		font-size: 0.75rem;
+		color: #999;
+		letter-spacing: 0.08em;
+	}
+
+	@media (max-width: 520px) {
+		.table-header,
+		.table-row {
+			grid-template-columns: 50px 1fr 30px;
+		}
+
+		.col-detail {
+			display: none;
+		}
+
+		h1 {
+			font-size: 2.2rem;
+		}
+	}
+</style>

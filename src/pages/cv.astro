@@ -1,0 +1,138 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="CV — Jenny Zhu">
+	<main>
+		<a href="/" class="back">&larr; Index</a>
+
+		<p class="label">CURRICULUM VITAE</p>
+		<h1>Jenny Zhu</h1>
+
+		<section>
+			<h2>Experience</h2>
+			<div class="entry">
+				<div class="entry-header">
+					<strong>Investor</strong>
+					<span class="date mono">2026 &mdash; Present</span>
+				</div>
+				<p class="org">Propel VC</p>
+			</div>
+		</section>
+
+		<hr />
+
+		<p class="placeholder">More details coming soon.</p>
+
+		<footer>
+			<p class="mono">&copy; 2026</p>
+		</footer>
+	</main>
+</Layout>
+
+<style>
+	main {
+		max-width: 600px;
+		margin: 0 auto;
+		padding: 3rem 2rem;
+	}
+
+	.back {
+		font-size: 0.8rem;
+		font-weight: 500;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: #888;
+		transition: color 0.2s ease;
+	}
+
+	.back:hover {
+		color: #1a1a1a;
+	}
+
+	.label {
+		font-size: 0.75rem;
+		font-weight: 500;
+		letter-spacing: 0.15em;
+		text-transform: uppercase;
+		color: #888;
+		margin-top: 4rem;
+		margin-bottom: 0.75rem;
+	}
+
+	h1 {
+		font-size: 2.5rem;
+		font-weight: 400;
+		letter-spacing: -0.02em;
+		margin: 0 0 3rem 0;
+		line-height: 1.1;
+	}
+
+	h2 {
+		font-size: 0.7rem;
+		font-weight: 500;
+		text-transform: uppercase;
+		letter-spacing: 0.12em;
+		color: #999;
+		margin-bottom: 1.25rem;
+	}
+
+	section {
+		margin-bottom: 2rem;
+	}
+
+	.entry {
+		margin-bottom: 1.5rem;
+	}
+
+	.entry-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+	}
+
+	.entry-header strong {
+		font-weight: 500;
+		font-size: 1.05rem;
+	}
+
+	.org {
+		font-size: 0.9rem;
+		color: #666;
+		margin-top: 0.25rem;
+		font-style: italic;
+	}
+
+	.date {
+		font-size: 0.8rem;
+		color: #888;
+	}
+
+	.mono {
+		font-family: 'IBM Plex Mono', monospace;
+	}
+
+	hr {
+		border: none;
+		border-top: 1px solid #ddd5cb;
+		margin: 2rem 0;
+	}
+
+	.placeholder {
+		color: #999;
+		font-style: italic;
+		font-size: 0.9rem;
+	}
+
+	footer {
+		margin-top: 6rem;
+		padding-top: 1.5rem;
+		border-top: 1px solid #ddd5cb;
+	}
+
+	footer p {
+		font-size: 0.75rem;
+		color: #999;
+		letter-spacing: 0.08em;
+	}
+</style>
