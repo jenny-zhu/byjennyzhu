@@ -8,94 +8,208 @@ const projects = [
 ---
 
 <Layout title="Jenny Zhu">
-	<main>
-		<section class="hero">
-			<p class="label">THE WORK & WORLD OF</p>
-			<h1>Jenny Zhu</h1>
-		</section>
+	<div class="page-wrapper">
+		<canvas id="bg-canvas"></canvas>
 
-		<nav class="tabs">
-			<button class="tab active" data-tab="about">About</button>
-			<button class="tab" data-tab="projects">Projects</button>
-			<button class="tab" data-tab="cv">CV</button>
-		</nav>
-		<hr class="tab-rule" />
+		<div class="content-panel">
+			<nav class="tabs">
+				<button class="tab active" data-tab="about">About</button>
+				<button class="tab" data-tab="projects">Projects</button>
+				<button class="tab" data-tab="cv">CV</button>
+			</nav>
 
-		<!-- ABOUT -->
-		<section id="about" class="tab-content active">
-			<p class="about-text">
-				Investor at <a href="https://propelvc.com" target="_blank" rel="noopener">Propel VC</a>, exploring the intersection of technology and human potential. Previously in banking in New York, now based in San Francisco.
-			</p>
-			<p class="about-text">
-				More details coming soon.
-			</p>
-		</section>
+			<div class="panel-body">
+				<header>
+					<span class="ref mono">REF: JZ-26</span>
+				</header>
 
-		<!-- PROJECTS -->
-		<section id="projects" class="tab-content">
-			<div class="table-header">
-				<span class="col-no">NO.</span>
-				<span class="col-name">PROJECT</span>
-				<span class="col-detail">DETAILS</span>
-				<span class="col-link"></span>
-			</div>
-			<hr />
-			{projects.map(project => (
-				<a href={project.url} class="table-row" target="_blank" rel="noopener">
-					<span class="col-no mono">[{project.id}]</span>
-					<span class="col-name project-name">{project.name}</span>
-					<span class="col-detail mono">{project.description}</span>
-					<span class="col-link arrow">&rarr;</span>
-				</a>
-			))}
-			<hr />
-		</section>
+				<section class="hero">
+					<p class="label">THE WORK & WORLD OF</p>
+					<h1>Jenny Zhu</h1>
+				</section>
 
-		<!-- CV -->
-		<section id="cv" class="tab-content">
-			<div class="cv-section">
-				<h2>Experience</h2>
-				<div class="entry">
-					<div class="entry-header">
-						<strong>Investor</strong>
-						<span class="date mono">2026 &mdash; Present</span>
+				<!-- ABOUT -->
+				<section id="about" class="tab-content active">
+					<p class="about-text">
+						Investor at <a href="https://propelvc.com" target="_blank" rel="noopener">Propel VC</a>, exploring the intersection of technology and human potential. Previously in banking in New York, now based in San Francisco.
+					</p>
+					<p class="about-text">
+						More details coming soon.
+					</p>
+				</section>
+
+				<!-- PROJECTS -->
+				<section id="projects" class="tab-content">
+					<div class="table-header">
+						<span class="col-no">NO.</span>
+						<span class="col-name">PROJECT</span>
+						<span class="col-detail">DETAILS</span>
+						<span class="col-link"></span>
 					</div>
-					<p class="org">Propel VC</p>
-				</div>
+					<hr />
+					{projects.map(project => (
+						<a href={project.url} class="table-row" target="_blank" rel="noopener">
+							<span class="col-no mono">[{project.id}]</span>
+							<span class="col-name project-name">{project.name}</span>
+							<span class="col-detail mono">{project.description}</span>
+							<span class="col-link arrow">&rarr;</span>
+						</a>
+					))}
+					<hr />
+				</section>
+
+				<!-- CV -->
+				<section id="cv" class="tab-content">
+					<div class="cv-section">
+						<h2>Experience</h2>
+						<div class="entry">
+							<div class="entry-header">
+								<strong>Investor</strong>
+								<span class="date mono">2026 &mdash; Present</span>
+							</div>
+							<p class="org">Propel VC</p>
+						</div>
+					</div>
+					<hr />
+					<p class="placeholder">More details coming soon.</p>
+				</section>
+
+				<footer>
+					<p class="mono">&copy; 2026</p>
+				</footer>
 			</div>
-
-			<hr />
-
-			<p class="placeholder">More details coming soon.</p>
-		</section>
-
-		<footer>
-			<p class="mono">&copy; 2026</p>
-		</footer>
-	</main>
+		</div>
+	</div>
 </Layout>
 
 <script>
+	// Tab switching
 	document.querySelectorAll('.tab').forEach(tab => {
 		tab.addEventListener('click', () => {
 			document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
 			document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-
 			tab.classList.add('active');
-			const target = tab.getAttribute('data-tab');
-			document.getElementById(target!)!.classList.add('active');
+			document.getElementById(tab.getAttribute('data-tab')!)!.classList.add('active');
 		});
 	});
+
+	// Pixelated dark green background
+	const canvas = document.getElementById('bg-canvas') as HTMLCanvasElement;
+	const ctx = canvas.getContext('2d')!;
+
+	function drawPixelBg() {
+		const dpr = window.devicePixelRatio || 1;
+		canvas.width = canvas.offsetWidth * dpr;
+		canvas.height = canvas.offsetHeight * dpr;
+		ctx.scale(dpr, dpr);
+
+		const w = canvas.offsetWidth;
+		const h = canvas.offsetHeight;
+		const pixelSize = 6;
+
+		for (let x = 0; x < w; x += pixelSize) {
+			for (let y = 0; y < h; y += pixelSize) {
+				const variation = Math.random() * 30 - 15;
+				const wave = Math.sin(x * 0.008 + y * 0.003) * 12;
+				const depth = Math.cos(y * 0.005) * 8;
+
+				const r = Math.max(0, Math.min(255, 26 + variation + wave + depth));
+				const g = Math.max(0, Math.min(255, 46 + variation + wave + depth));
+				const b = Math.max(0, Math.min(255, 28 + variation * 0.5 + wave * 0.5));
+
+				ctx.fillStyle = `rgb(${r}, ${g}, ${b})`;
+				ctx.fillRect(x, y, pixelSize, pixelSize);
+			}
+		}
+	}
+
+	drawPixelBg();
+	window.addEventListener('resize', drawPixelBg);
 </script>
 
 <style>
-	main {
-		max-width: 720px;
-		margin: 0 auto;
-		padding: 3rem 2rem;
+	.page-wrapper {
+		display: flex;
+		min-height: 100vh;
+		position: relative;
+	}
+
+	/* Pixelated green background */
+	#bg-canvas {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 0;
+	}
+
+	/* Content panel */
+	.content-panel {
+		position: relative;
+		z-index: 1;
+		margin-left: auto;
+		width: 65%;
 		min-height: 100vh;
 		display: flex;
 		flex-direction: column;
+	}
+
+	/* File folder tabs */
+	.tabs {
+		display: flex;
+		gap: 4px;
+		padding-left: 2rem;
+		position: relative;
+		z-index: 2;
+	}
+
+	.tab {
+		background: #ddd5cb;
+		border: none;
+		cursor: pointer;
+		font-family: 'IBM Plex Sans', sans-serif;
+		font-size: 0.75rem;
+		font-weight: 500;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: #888;
+		padding: 0.65rem 1.5rem;
+		border-radius: 8px 8px 0 0;
+		position: relative;
+		top: 1px;
+		transition: all 0.15s ease;
+	}
+
+	.tab:hover {
+		color: #1a1a1a;
+		background: #e8e2da;
+	}
+
+	.tab.active {
+		background: #f5f0eb;
+		color: #1a1a1a;
+		z-index: 3;
+	}
+
+	/* Panel body — the "folder" */
+	.panel-body {
+		background: #f5f0eb;
+		flex: 1;
+		padding: 2.5rem 3rem 3rem;
+		position: relative;
+	}
+
+	header {
+		display: flex;
+		justify-content: flex-end;
+		margin-bottom: 3rem;
+	}
+
+	.ref {
+		font-size: 0.7rem;
+		color: #999;
+		letter-spacing: 0.08em;
 	}
 
 	.label {
@@ -119,51 +233,6 @@ const projects = [
 		margin-bottom: 3rem;
 	}
 
-	/* Tabs */
-	.tabs {
-		display: flex;
-		gap: 2rem;
-	}
-
-	.tab {
-		background: none;
-		border: none;
-		cursor: pointer;
-		font-family: 'IBM Plex Sans', sans-serif;
-		font-size: 0.8rem;
-		font-weight: 500;
-		letter-spacing: 0.12em;
-		text-transform: uppercase;
-		color: #999;
-		padding: 0 0 0.75rem 0;
-		position: relative;
-		transition: color 0.2s ease;
-	}
-
-	.tab:hover {
-		color: #1a1a1a;
-	}
-
-	.tab.active {
-		color: #1a1a1a;
-	}
-
-	.tab.active::after {
-		content: '';
-		position: absolute;
-		bottom: -1px;
-		left: 0;
-		right: 0;
-		height: 2px;
-		background: #1a1a1a;
-	}
-
-	.tab-rule {
-		border: none;
-		border-top: 1px solid #1a1a1a;
-		margin: 0 0 2.5rem 0;
-	}
-
 	/* Tab content */
 	.tab-content {
 		display: none;
@@ -178,7 +247,7 @@ const projects = [
 	.about-text {
 		font-size: 1.1rem;
 		line-height: 1.7;
-		max-width: 560px;
+		max-width: 520px;
 		color: #333;
 		margin-bottom: 1.25rem;
 	}
@@ -302,6 +371,7 @@ const projects = [
 		color: #999;
 		font-style: italic;
 		font-size: 0.9rem;
+		margin-top: 1.5rem;
 	}
 
 	/* Footer */
@@ -317,7 +387,31 @@ const projects = [
 		letter-spacing: 0.08em;
 	}
 
-	@media (max-width: 520px) {
+	/* Mobile */
+	@media (max-width: 768px) {
+		.content-panel {
+			width: 100%;
+			margin-left: 0;
+		}
+
+		#bg-canvas {
+			height: 120px;
+			position: relative;
+			width: 100%;
+		}
+
+		.page-wrapper {
+			flex-direction: column;
+		}
+
+		.panel-body {
+			padding: 2rem 1.5rem;
+		}
+
+		.tabs {
+			padding-left: 1rem;
+		}
+
 		.table-header,
 		.table-row {
 			grid-template-columns: 50px 1fr 30px;
@@ -329,10 +423,6 @@ const projects = [
 
 		h1 {
 			font-size: 2.2rem;
-		}
-
-		.tabs {
-			gap: 1.25rem;
 		}
 	}
 </style>
