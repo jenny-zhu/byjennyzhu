@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-const links = [
+const projects = [
 	{ id: "001", name: "Blueprint", url: "https://blueprint.byjennyzhu.com", description: "STRATEGY & RESEARCH" },
 	{ id: "002", name: "Movement", url: "https://movement.byjennyzhu.com", description: "PHYSICAL PRACTICE" },
 ];
@@ -9,18 +9,30 @@ const links = [
 
 <Layout title="Jenny Zhu">
 	<main>
-		<header>
-			<nav>
-				<a href="/cv">CV</a>
-			</nav>
-		</header>
-
 		<section class="hero">
 			<p class="label">THE WORK & WORLD OF</p>
 			<h1>Jenny Zhu</h1>
 		</section>
 
-		<section class="index">
+		<nav class="tabs">
+			<button class="tab active" data-tab="about">About</button>
+			<button class="tab" data-tab="projects">Projects</button>
+			<button class="tab" data-tab="cv">CV</button>
+		</nav>
+		<hr class="tab-rule" />
+
+		<!-- ABOUT -->
+		<section id="about" class="tab-content active">
+			<p class="about-text">
+				Investor at <a href="https://propelvc.com" target="_blank" rel="noopener">Propel VC</a>, exploring the intersection of technology and human potential. Previously in banking in New York, now based in San Francisco.
+			</p>
+			<p class="about-text">
+				More details coming soon.
+			</p>
+		</section>
+
+		<!-- PROJECTS -->
+		<section id="projects" class="tab-content">
 			<div class="table-header">
 				<span class="col-no">NO.</span>
 				<span class="col-name">PROJECT</span>
@@ -28,15 +40,33 @@ const links = [
 				<span class="col-link"></span>
 			</div>
 			<hr />
-			{links.map(link => (
-				<a href={link.url} class="table-row" target="_blank" rel="noopener">
-					<span class="col-no mono">[{link.id}]</span>
-					<span class="col-name project-name">{link.name}</span>
-					<span class="col-detail mono">{link.description}</span>
+			{projects.map(project => (
+				<a href={project.url} class="table-row" target="_blank" rel="noopener">
+					<span class="col-no mono">[{project.id}]</span>
+					<span class="col-name project-name">{project.name}</span>
+					<span class="col-detail mono">{project.description}</span>
 					<span class="col-link arrow">&rarr;</span>
 				</a>
 			))}
 			<hr />
+		</section>
+
+		<!-- CV -->
+		<section id="cv" class="tab-content">
+			<div class="cv-section">
+				<h2>Experience</h2>
+				<div class="entry">
+					<div class="entry-header">
+						<strong>Investor</strong>
+						<span class="date mono">2026 &mdash; Present</span>
+					</div>
+					<p class="org">Propel VC</p>
+				</div>
+			</div>
+
+			<hr />
+
+			<p class="placeholder">More details coming soon.</p>
 		</section>
 
 		<footer>
@@ -44,6 +74,19 @@ const links = [
 		</footer>
 	</main>
 </Layout>
+
+<script>
+	document.querySelectorAll('.tab').forEach(tab => {
+		tab.addEventListener('click', () => {
+			document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+			document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+			tab.classList.add('active');
+			const target = tab.getAttribute('data-tab');
+			document.getElementById(target!)!.classList.add('active');
+		});
+	});
+</script>
 
 <style>
 	main {
@@ -53,26 +96,6 @@ const links = [
 		min-height: 100vh;
 		display: flex;
 		flex-direction: column;
-	}
-
-	header {
-		display: flex;
-		justify-content: flex-end;
-		margin-bottom: 6rem;
-	}
-
-	header nav a {
-		font-size: 0.8rem;
-		font-weight: 500;
-		letter-spacing: 0.1em;
-		text-transform: uppercase;
-		padding-bottom: 2px;
-		border-bottom: 1px solid #1a1a1a;
-		transition: opacity 0.2s ease;
-	}
-
-	header nav a:hover {
-		opacity: 0.5;
 	}
 
 	.label {
@@ -93,16 +116,85 @@ const links = [
 	}
 
 	.hero {
-		margin-bottom: 5rem;
+		margin-bottom: 3rem;
 	}
 
+	/* Tabs */
+	.tabs {
+		display: flex;
+		gap: 2rem;
+	}
+
+	.tab {
+		background: none;
+		border: none;
+		cursor: pointer;
+		font-family: 'IBM Plex Sans', sans-serif;
+		font-size: 0.8rem;
+		font-weight: 500;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: #999;
+		padding: 0 0 0.75rem 0;
+		position: relative;
+		transition: color 0.2s ease;
+	}
+
+	.tab:hover {
+		color: #1a1a1a;
+	}
+
+	.tab.active {
+		color: #1a1a1a;
+	}
+
+	.tab.active::after {
+		content: '';
+		position: absolute;
+		bottom: -1px;
+		left: 0;
+		right: 0;
+		height: 2px;
+		background: #1a1a1a;
+	}
+
+	.tab-rule {
+		border: none;
+		border-top: 1px solid #1a1a1a;
+		margin: 0 0 2.5rem 0;
+	}
+
+	/* Tab content */
+	.tab-content {
+		display: none;
+		flex: 1;
+	}
+
+	.tab-content.active {
+		display: block;
+	}
+
+	/* About */
+	.about-text {
+		font-size: 1.1rem;
+		line-height: 1.7;
+		max-width: 560px;
+		color: #333;
+		margin-bottom: 1.25rem;
+	}
+
+	.about-text a {
+		border-bottom: 1px solid #1a1a1a;
+		transition: opacity 0.2s ease;
+	}
+
+	.about-text a:hover {
+		opacity: 0.5;
+	}
+
+	/* Projects table */
 	.mono {
 		font-family: 'IBM Plex Mono', monospace;
-	}
-
-	/* Table layout */
-	.index {
-		flex: 1;
 	}
 
 	.table-header {
@@ -165,6 +257,54 @@ const links = [
 		opacity: 1;
 	}
 
+	/* CV */
+	h2 {
+		font-size: 0.7rem;
+		font-weight: 500;
+		text-transform: uppercase;
+		letter-spacing: 0.12em;
+		color: #999;
+		margin-bottom: 1.25rem;
+	}
+
+	.cv-section {
+		margin-bottom: 2rem;
+	}
+
+	.entry {
+		margin-bottom: 1.5rem;
+	}
+
+	.entry-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+	}
+
+	.entry-header strong {
+		font-weight: 500;
+		font-size: 1.05rem;
+	}
+
+	.org {
+		font-size: 0.9rem;
+		color: #666;
+		margin-top: 0.25rem;
+		font-style: italic;
+	}
+
+	.date {
+		font-size: 0.8rem;
+		color: #888;
+	}
+
+	.placeholder {
+		color: #999;
+		font-style: italic;
+		font-size: 0.9rem;
+	}
+
+	/* Footer */
 	footer {
 		margin-top: 6rem;
 		padding-top: 1.5rem;
@@ -189,6 +329,10 @@ const links = [
 
 		h1 {
 			font-size: 2.2rem;
+		}
+
+		.tabs {
+			gap: 1.25rem;
 		}
 	}
 </style>
