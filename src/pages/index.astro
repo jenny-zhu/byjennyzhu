@@ -24,17 +24,19 @@ const projects = [
 				</header>
 
 				<section class="hero">
-					<p class="label">THE WORK & WORLD OF</p>
 					<h1>Jenny Zhu</h1>
 				</section>
 
 				<!-- ABOUT -->
 				<section id="about" class="tab-content active">
 					<p class="about-text">
-						Investor at <a href="https://propelvc.com" target="_blank" rel="noopener">Propel VC</a>, exploring the intersection of technology and human potential. Previously in banking in New York, now based in San Francisco.
+						I'm an investor at <a href="https://propel.vc" target="_blank" rel="noopener">Propel Venture Partners</a>, where I focus on pre-seed / seed-stage fintech. My interests span payments, commerce, mission-driven companies, and anything pushing the envelope + reinventing categories.
 					</p>
 					<p class="about-text">
-						More details coming soon.
+						Previously, I spent five years in investment banking advising companies like PayPal, Ripple, Franklin Templeton, Xpansiv, and the FTX Debtors across M&A, capital raises, and strategic transactions.
+					</p>
+					<p class="about-text">
+						Based in San Francisco, previously New York.
 					</p>
 				</section>
 
@@ -64,14 +66,62 @@ const projects = [
 						<h2>Experience</h2>
 						<div class="entry">
 							<div class="entry-header">
-								<strong>Investor</strong>
+								<a href="https://propel.vc" target="_blank" rel="noopener"><strong>Propel Venture Partners</strong></a>
 								<span class="date mono">2026 &mdash; Present</span>
 							</div>
-							<p class="org">Propel VC</p>
+							<p class="org">Early-stage venture investing</p>
+						</div>
+						<div class="entry">
+							<div class="entry-header">
+								<a href="https://www.pwpartners.com" target="_blank" rel="noopener"><strong>Perella Weinberg Partners</strong></a>
+								<span class="date mono">2022 &mdash; 2025</span>
+							</div>
+							<p class="org">Investment Banking &mdash; FinTech Group</p>
+							<div class="deal-grid">
+								<a class="deal-card" href="https://www.reuters.com/technology/ripple-raise-new-funding-that-would-value-company-about-11-bln-bloomberg-news-2024-10-04/" target="_blank" rel="noopener">
+									<span class="deal-name">Ripple</span>
+									<span class="deal-desc mono">$500M Capital Raise</span>
+								</a>
+								<a class="deal-card" href="https://www.ups.com/us/en/about/news/press-releases/ups-acquires-happy-returns.page" target="_blank" rel="noopener">
+									<span class="deal-name">PayPal &rarr; UPS</span>
+									<span class="deal-desc mono">Happy Returns Divestiture</span>
+								</a>
+								<a class="deal-card" href="https://www.businesswire.com/news/home/20220104005474/en/Xpansiv-Raises-400-Million-in-Series-C-Funding-Led-by-Blackstone" target="_blank" rel="noopener">
+									<span class="deal-name">Xpansiv</span>
+									<span class="deal-desc mono">$525M Growth Raise</span>
+								</a>
+								<a class="deal-card" href="https://restructuring.primeclerk.com/FTX/" target="_blank" rel="noopener">
+									<span class="deal-name">FTX</span>
+									<span class="deal-desc mono">Chapter 11 Restructuring</span>
+								</a>
+							</div>
+						</div>
+						<div class="entry">
+							<div class="entry-header">
+								<a href="https://www.broadhaven.com" target="_blank" rel="noopener"><strong>Broadhaven Capital Partners</strong></a>
+								<span class="date mono">2021 &mdash; 2022</span>
+							</div>
+							<p class="org">Investment Banking &mdash; FIG & FinTech</p>
+						</div>
+						<div class="entry">
+							<div class="entry-header">
+								<a href="https://www.lazard.com" target="_blank" rel="noopener"><strong>Lazard</strong></a>
+								<span class="date mono">2020</span>
+							</div>
+							<p class="org">Investment Banking &mdash; Restructuring</p>
 						</div>
 					</div>
 					<hr />
-					<p class="placeholder">More details coming soon.</p>
+					<div class="cv-section">
+						<h2>Education</h2>
+						<div class="entry">
+							<div class="entry-header">
+								<a href="https://www.columbia.edu" target="_blank" rel="noopener"><strong>Columbia University</strong></a>
+								<span class="date mono">2021</span>
+							</div>
+							<p class="org">B.A. Financial Economics, Concentration in History</p>
+						</div>
+					</div>
 				</section>
 
 				<footer>
@@ -130,8 +180,12 @@ const projects = [
 <style>
 	.page-wrapper {
 		display: flex;
+		justify-content: center;
+		align-items: center;
 		min-height: 100vh;
 		position: relative;
+		padding: 3rem 1rem;
+		box-sizing: border-box;
 	}
 
 	/* Pixelated green background */
@@ -148,9 +202,7 @@ const projects = [
 	.content-panel {
 		position: relative;
 		z-index: 1;
-		margin-left: auto;
-		width: 65%;
-		min-height: 100vh;
+		width: min(740px, 92%);
 		display: flex;
 		flex-direction: column;
 	}
@@ -158,98 +210,111 @@ const projects = [
 	/* File folder tabs */
 	.tabs {
 		display: flex;
-		gap: 4px;
-		padding-left: 2rem;
+		padding-left: 1.5rem;
 		position: relative;
 		z-index: 2;
 	}
 
 	.tab {
-		background: #ddd5cb;
+		background: #8a9e8c;
 		border: none;
 		cursor: pointer;
-		font-family: 'IBM Plex Sans', sans-serif;
-		font-size: 0.75rem;
+		font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+		font-size: 0.72rem;
 		font-weight: 500;
-		letter-spacing: 0.12em;
+		letter-spacing: 0.1em;
 		text-transform: uppercase;
-		color: #888;
-		padding: 0.65rem 1.5rem;
-		border-radius: 8px 8px 0 0;
+		color: rgba(255, 255, 255, 0.75);
+		padding: 0.5rem 1.8rem 0.65rem;
+		border-radius: 0;
 		position: relative;
-		top: 1px;
-		transition: all 0.15s ease;
+		top: 0;
+		margin-right: -6px;
+		margin-bottom: -1px;
+		transition: all 0.2s ease;
+		clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%);
 	}
+
+	.tab:nth-child(1) { background: #95a897; }
+	.tab:nth-child(2) { background: #8a9e8c; }
+	.tab:nth-child(3) { background: #7d9180; }
 
 	.tab:hover {
-		color: #1a1a1a;
-		background: #e8e2da;
+		color: #fff;
+		transform: translateY(-3px);
+		z-index: 2;
 	}
 
+	.tab:nth-child(1):hover { background: #a3b5a5; }
+	.tab:nth-child(2):hover { background: #98ac9a; }
+	.tab:nth-child(3):hover { background: #8b9f8e; }
+
 	.tab.active {
-		background: #f5f0eb;
+		background: #EAEAE6;
 		color: #1a1a1a;
 		z-index: 3;
+		transform: translateY(0);
+		font-weight: 600;
 	}
 
 	/* Panel body — the "folder" */
 	.panel-body {
-		background: #f5f0eb;
-		flex: 1;
-		padding: 2.5rem 3rem 3rem;
+		background: #EAEAE6;
+		padding: 1.75rem 2.5rem 1rem;
 		position: relative;
+		height: 560px;
+		display: flex;
+		flex-direction: column;
+		overflow: hidden;
 	}
 
 	header {
 		display: flex;
 		justify-content: flex-end;
-		margin-bottom: 3rem;
+		margin-bottom: 1rem;
+		flex-shrink: 0;
 	}
 
 	.ref {
-		font-size: 0.7rem;
+		font-size: 0.65rem;
 		color: #999;
 		letter-spacing: 0.08em;
 	}
 
-	.label {
-		font-size: 0.75rem;
-		font-weight: 500;
-		letter-spacing: 0.15em;
-		text-transform: uppercase;
-		color: #888;
-		margin-bottom: 0.75rem;
-	}
-
 	h1 {
-		font-size: 3rem;
+		font-size: 1.65rem;
 		font-weight: 400;
-		letter-spacing: -0.02em;
-		margin: 0 0 1rem 0;
+		letter-spacing: -0.01em;
+		margin: 0 0 0.5rem 0;
 		line-height: 1.1;
 	}
 
 	.hero {
-		margin-bottom: 3rem;
+		margin-bottom: 1.25rem;
+		padding-top: 0.5rem;
+		flex-shrink: 0;
 	}
 
 	/* Tab content */
 	.tab-content {
 		display: none;
 		flex: 1;
+		overflow-y: auto;
+		min-height: 0;
 	}
 
 	.tab-content.active {
-		display: block;
+		display: flex;
+		flex-direction: column;
 	}
 
 	/* About */
 	.about-text {
-		font-size: 1.1rem;
-		line-height: 1.7;
+		font-size: 0.9rem;
+		line-height: 1.65;
 		max-width: 520px;
 		color: #333;
-		margin-bottom: 1.25rem;
+		margin-bottom: 0.6rem;
 	}
 
 	.about-text a {
@@ -280,8 +345,9 @@ const projects = [
 
 	hr {
 		border: none;
-		border-top: 1px solid #1a1a1a;
-		margin: 0;
+		border-top: 1px solid #c5bfb8;
+		margin: 0 -2.5rem;
+		padding: 0 2.5rem;
 	}
 
 	.table-row {
@@ -290,7 +356,7 @@ const projects = [
 		gap: 1rem;
 		align-items: baseline;
 		padding: 1.25rem 0;
-		border-bottom: 1px solid #ddd5cb;
+		border-bottom: 1px solid #c5bfb8;
 		transition: opacity 0.2s ease;
 	}
 
@@ -304,7 +370,7 @@ const projects = [
 	}
 
 	.project-name {
-		font-size: 1.15rem;
+		font-size: 0.95rem;
 		font-weight: 500;
 		font-style: italic;
 	}
@@ -352,11 +418,11 @@ const projects = [
 
 	.entry-header strong {
 		font-weight: 500;
-		font-size: 1.05rem;
+		font-size: 0.92rem;
 	}
 
 	.org {
-		font-size: 0.9rem;
+		font-size: 0.8rem;
 		color: #666;
 		margin-top: 0.25rem;
 		font-style: italic;
@@ -367,49 +433,93 @@ const projects = [
 		color: #888;
 	}
 
-	.placeholder {
-		color: #999;
-		font-style: italic;
-		font-size: 0.9rem;
-		margin-top: 1.5rem;
+	.deal-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 0.5rem;
+		margin-top: 0.75rem;
+	}
+
+	.deal-card {
+		background: #dfddd9;
+		padding: 0.5rem 0.65rem;
+		transition: background 0.15s ease;
+		display: flex;
+		flex-direction: column;
+		gap: 0.15rem;
+	}
+
+	.deal-card:hover {
+		background: #d4d1cc;
+	}
+
+	.deal-name {
+		font-weight: 500;
+		font-size: 0.78rem;
+	}
+
+	.deal-desc {
+		font-size: 0.6rem;
+		letter-spacing: 0.06em;
+		color: #888;
 	}
 
 	/* Footer */
 	footer {
-		margin-top: 6rem;
-		padding-top: 1.5rem;
-		border-top: 1px solid #ddd5cb;
+		margin-top: auto;
+		padding-top: 0.6rem;
+		padding-bottom: 0.25rem;
+		border-top: 1px solid #c5bfb8;
+		margin-left: -2.5rem;
+		margin-right: -2.5rem;
+		padding-left: 2.5rem;
+		padding-right: 2.5rem;
+		flex-shrink: 0;
 	}
 
 	footer p {
-		font-size: 0.75rem;
-		color: #999;
+		font-size: 0.65rem;
+		color: #aaa;
 		letter-spacing: 0.08em;
 	}
 
 	/* Mobile */
 	@media (max-width: 768px) {
+		.page-wrapper {
+			padding: 1.5rem 0.75rem;
+			align-items: flex-start;
+		}
+
 		.content-panel {
 			width: 100%;
-			margin-left: 0;
-		}
-
-		#bg-canvas {
-			height: 120px;
-			position: relative;
-			width: 100%;
-		}
-
-		.page-wrapper {
-			flex-direction: column;
 		}
 
 		.panel-body {
-			padding: 2rem 1.5rem;
+			padding: 1.5rem 1.25rem 2rem;
+			height: 75vh;
+		}
+
+		hr {
+			margin-left: -1.25rem;
+			margin-right: -1.25rem;
+			padding-left: 1.25rem;
+			padding-right: 1.25rem;
+		}
+
+		footer {
+			margin-left: -1.25rem;
+			margin-right: -1.25rem;
+			padding-left: 1.25rem;
+			padding-right: 1.25rem;
 		}
 
 		.tabs {
-			padding-left: 1rem;
+			padding-left: 0.75rem;
+		}
+
+		.tab {
+			font-size: 0.65rem;
+			padding: 0.5rem 1.2rem;
 		}
 
 		.table-header,
@@ -422,7 +532,40 @@ const projects = [
 		}
 
 		h1 {
-			font-size: 2.2rem;
+			font-size: 1.35rem;
+		}
+
+		.about-text {
+			font-size: 0.85rem;
+		}
+
+		.deal-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.entry-header {
+			flex-direction: column;
+			gap: 0.15rem;
+		}
+
+		header {
+			margin-bottom: 1rem;
+		}
+
+		.hero {
+			margin-bottom: 1.5rem;
+		}
+	}
+
+	@media (max-width: 400px) {
+		.tab {
+			font-size: 0.6rem;
+			padding: 0.45rem 1rem;
+			margin-right: -4px;
+		}
+
+		.tabs {
+			padding-left: 0.5rem;
 		}
 	}
 </style>
