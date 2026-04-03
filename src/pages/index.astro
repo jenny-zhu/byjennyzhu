@@ -2,323 +2,374 @@
 import Layout from '../layouts/Layout.astro';
 
 const projects = [
-	{ id: "001", name: "Blueprint", url: "https://blueprint.byjennyzhu.com", description: "STRATEGY & RESEARCH" },
+	{ id: "001", name: "Realm", url: "https://realm.byjennyzhu.com", description: "HOROSCOPE APP" },
 	{ id: "002", name: "Movement", url: "https://movement.byjennyzhu.com", description: "PHYSICAL PRACTICE" },
 ];
 ---
 
 <Layout title="Jenny Zhu">
 	<div class="page-wrapper">
-		<canvas id="bg-canvas"></canvas>
+		<!-- Scaffolding overlay -->
+		<div class="scaffolding">
+			<div class="scaffold-line scaffold-v scaffold-v1"></div>
+			<div class="scaffold-line scaffold-v scaffold-v2"></div>
+			<div class="scaffold-line scaffold-h scaffold-h1"></div>
+			<div class="scaffold-line scaffold-h scaffold-h2"></div>
+			<div class="crosshair ch-1"></div>
+			<div class="crosshair ch-2"></div>
+			<div class="crosshair ch-3"></div>
+			<div class="crosshair ch-4"></div>
+		</div>
 
-		<div class="content-panel">
-			<nav class="tabs">
-				<button class="tab active" data-tab="about">About</button>
-				<button class="tab" data-tab="projects">Projects</button>
-				<button class="tab" data-tab="cv">CV</button>
-			</nav>
+		<div class="app-window">
+			<!-- Tabs -->
+			<div class="tabs-container">
+				<button class="tab tab-1 active" data-tab="about" data-ref="/HOME/JENNY_ZHU">About</button>
+				<button class="tab tab-2" data-tab="cv" data-ref="/HOME/JENNY_ZHU/CV">CV</button>
+				<button class="tab tab-3" data-tab="projects" data-ref="/HOME/JENNY_ZHU/PROJECTS">Projects</button>
+			</div>
 
-			<div class="panel-body">
-				<header>
-					<span class="ref mono">REF: JZ-26</span>
-				</header>
-
-				<section class="hero">
-					<h1>Jenny Zhu</h1>
-				</section>
-
-				<!-- ABOUT -->
-				<section id="about" class="tab-content active">
-					<p class="about-text">
-						I'm an investor at <a href="https://propel.vc" target="_blank" rel="noopener">Propel Venture Partners</a>, where I focus on pre-seed / seed-stage fintech. My interests span payments, commerce, mission-driven companies, and anything pushing the envelope + reinventing categories.
-					</p>
-					<p class="about-text">
-						Previously, I spent five years in investment banking advising companies like PayPal, Ripple, Franklin Templeton, Xpansiv, and the FTX Debtors across M&A, capital raises, and strategic transactions.
-					</p>
-					<p class="about-text">
-						Based in San Francisco, previously New York.
-					</p>
-				</section>
-
-				<!-- PROJECTS -->
-				<section id="projects" class="tab-content">
-					<div class="table-header">
-						<span class="col-no">NO.</span>
-						<span class="col-name">PROJECT</span>
-						<span class="col-detail">DETAILS</span>
-						<span class="col-link"></span>
+			<!-- Window body -->
+			<div class="app-body">
+				<!-- Window header bar -->
+				<div class="window-header">
+					<span class="ref mono">Ref: /HOME/JENNY_ZHU</span>
+					<div class="header-dots">
+						<span class="dot dot-outline"></span>
+						<span class="dot dot-filled"></span>
 					</div>
-					<hr />
-					{projects.map(project => (
-						<a href={project.url} class="table-row" target="_blank" rel="noopener">
-							<span class="col-no mono">[{project.id}]</span>
-							<span class="col-name project-name">{project.name}</span>
-							<span class="col-detail mono">{project.description}</span>
-							<span class="col-link arrow">&rarr;</span>
+				</div>
+
+				<!-- Persistent name -->
+				<div class="name-block">
+					<h1 class="site-name">Jenny Zhu</h1>
+				</div>
+
+				<!-- Scrollable content -->
+				<div class="content-scroll">
+
+					<!-- ABOUT -->
+					<section id="about" class="pane active">
+						<div class="about-body">
+							<p class="about-text">
+								I'm an investor at <a href="https://propel.vc" target="_blank" rel="noopener">Propel Venture Partners</a>, where I focus on pre-seed / seed-stage fintech. My interests span payments, infrastructure, commerce, institutional crypto, mission-driven companies, and more &mdash; the envelope-pushers and the category-definers.
+							</p>
+
+							<p class="about-text">
+								Previously, I spent five years in investment banking advising companies (e.g., PayPal, Ripple, Franklin Templeton, Xpansiv, FTX Debtors) across M&A, capital raises, and strategic transactions.
+							</p>
+
+							<div class="divider"></div>
+
+							<div class="about-footer">
+								<p class="location mono">
+									Based in San Francisco,<br />
+									previously New York City and Dallas.
+								</p>
+								<div class="links">
+									<a href="mailto:hello@byjennyzhu.com" class="mono">Email</a>
+									<a href="https://x.com/imjennyzhu" target="_blank" rel="noopener" class="mono">Twitter</a>
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<!-- PROJECTS -->
+					<section id="projects" class="pane">
+						<div class="archive-list">
+							{projects.map(project => (
+								<a href={project.url} class="archive-row" target="_blank" rel="noopener">
+									<div class="archive-row-left">
+										<span class="entry-label mono">ENTRY. {project.id}</span>
+										<h3 class="archive-name">{project.name}</h3>
+									</div>
+								</a>
+							))}
+						</div>
+					</section>
+
+					<!-- CV -->
+					<section id="cv" class="pane cv-pane">
+						<a href="#" class="cv-link" target="_blank" rel="noopener">
+							<span class="cv-link-text">View Resume / CV</span>
+							<span class="cv-link-arrow">&rarr;</span>
 						</a>
-					))}
-					<hr />
-				</section>
+					</section>
 
-				<!-- CV -->
-				<section id="cv" class="tab-content">
-					<div class="cv-section">
-						<h2>Experience</h2>
-						<div class="entry">
-							<div class="entry-header">
-								<a href="https://propel.vc" target="_blank" rel="noopener"><strong>Propel Venture Partners</strong></a>
-								<span class="date mono">2026 &mdash; Present</span>
-							</div>
-							<p class="org">Early-stage venture investing</p>
-						</div>
-						<div class="entry">
-							<div class="entry-header">
-								<a href="https://www.pwpartners.com" target="_blank" rel="noopener"><strong>Perella Weinberg Partners</strong></a>
-								<span class="date mono">2022 &mdash; 2025</span>
-							</div>
-							<p class="org">Investment Banking &mdash; FinTech Group</p>
-							<div class="deal-grid">
-								<a class="deal-card" href="https://www.reuters.com/technology/ripple-raise-new-funding-that-would-value-company-about-11-bln-bloomberg-news-2024-10-04/" target="_blank" rel="noopener">
-									<span class="deal-name">Ripple</span>
-									<span class="deal-desc mono">$500M Capital Raise</span>
-								</a>
-								<a class="deal-card" href="https://www.ups.com/us/en/about/news/press-releases/ups-acquires-happy-returns.page" target="_blank" rel="noopener">
-									<span class="deal-name">PayPal &rarr; UPS</span>
-									<span class="deal-desc mono">Happy Returns Divestiture</span>
-								</a>
-								<a class="deal-card" href="https://www.businesswire.com/news/home/20220104005474/en/Xpansiv-Raises-400-Million-in-Series-C-Funding-Led-by-Blackstone" target="_blank" rel="noopener">
-									<span class="deal-name">Xpansiv</span>
-									<span class="deal-desc mono">$525M Growth Raise</span>
-								</a>
-								<a class="deal-card" href="https://restructuring.primeclerk.com/FTX/" target="_blank" rel="noopener">
-									<span class="deal-name">FTX</span>
-									<span class="deal-desc mono">Chapter 11 Restructuring</span>
-								</a>
-							</div>
-						</div>
-						<div class="entry">
-							<div class="entry-header">
-								<a href="https://www.broadhaven.com" target="_blank" rel="noopener"><strong>Broadhaven Capital Partners</strong></a>
-								<span class="date mono">2021 &mdash; 2022</span>
-							</div>
-							<p class="org">Investment Banking &mdash; FIG & FinTech</p>
-						</div>
-						<div class="entry">
-							<div class="entry-header">
-								<a href="https://www.lazard.com" target="_blank" rel="noopener"><strong>Lazard</strong></a>
-								<span class="date mono">2020</span>
-							</div>
-							<p class="org">Investment Banking &mdash; Restructuring</p>
-						</div>
-					</div>
-					<hr />
-					<div class="cv-section">
-						<h2>Education</h2>
-						<div class="entry">
-							<div class="entry-header">
-								<a href="https://www.columbia.edu" target="_blank" rel="noopener"><strong>Columbia University</strong></a>
-								<span class="date mono">2021</span>
-							</div>
-							<p class="org">B.A. Financial Economics, Concentration in History</p>
-						</div>
-					</div>
-				</section>
+				</div>
 
-				<footer>
-					<p class="mono">&copy; 2026</p>
-				</footer>
+				<!-- Footer -->
+				<div class="window-footer">
+					<span class="mono footer-right">&copy; 2026 J. Zhu</span>
+				</div>
 			</div>
 		</div>
 	</div>
 </Layout>
 
 <script>
-	// Tab switching
 	document.querySelectorAll('.tab').forEach(tab => {
 		tab.addEventListener('click', () => {
 			document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-			document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+			document.querySelectorAll('.pane').forEach(p => p.classList.remove('active'));
 			tab.classList.add('active');
 			document.getElementById(tab.getAttribute('data-tab')!)!.classList.add('active');
+			document.querySelector('.ref')!.textContent = `Ref: ${tab.getAttribute('data-ref')}`;
 		});
 	});
-
-	// Pixelated dark green background
-	const canvas = document.getElementById('bg-canvas') as HTMLCanvasElement;
-	const ctx = canvas.getContext('2d')!;
-
-	function drawPixelBg() {
-		const dpr = window.devicePixelRatio || 1;
-		canvas.width = canvas.offsetWidth * dpr;
-		canvas.height = canvas.offsetHeight * dpr;
-		ctx.scale(dpr, dpr);
-
-		const w = canvas.offsetWidth;
-		const h = canvas.offsetHeight;
-		const pixelSize = 6;
-
-		for (let x = 0; x < w; x += pixelSize) {
-			for (let y = 0; y < h; y += pixelSize) {
-				const variation = Math.random() * 30 - 15;
-				const wave = Math.sin(x * 0.008 + y * 0.003) * 12;
-				const depth = Math.cos(y * 0.005) * 8;
-
-				const r = Math.max(0, Math.min(255, 26 + variation + wave + depth));
-				const g = Math.max(0, Math.min(255, 46 + variation + wave + depth));
-				const b = Math.max(0, Math.min(255, 28 + variation * 0.5 + wave * 0.5));
-
-				ctx.fillStyle = `rgb(${r}, ${g}, ${b})`;
-				ctx.fillRect(x, y, pixelSize, pixelSize);
-			}
-		}
-	}
-
-	drawPixelBg();
-	window.addEventListener('resize', drawPixelBg);
 </script>
 
 <style>
+	@font-face {
+		font-family: 'Aujournuit';
+		src: url('/fonts/Aujournuit-Densed.woff2') format('woff2'),
+			 url('/fonts/Aujournuit-Densed.woff') format('woff');
+		font-weight: 400;
+		font-style: normal;
+		font-display: swap;
+	}
+
+	/* Background */
 	.page-wrapper {
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		min-height: 100vh;
-		position: relative;
 		padding: 3rem 1rem;
 		box-sizing: border-box;
+		background-image: url('/bg-hills.png');
+		background-size: cover;
+		background-position: center;
+		position: relative;
+		overflow: hidden;
 	}
 
-	/* Pixelated green background */
-	#bg-canvas {
+	/* Scaffolding overlay */
+	.scaffolding {
 		position: fixed;
 		top: 0;
 		left: 0;
-		width: 100%;
-		height: 100%;
+		width: 100vw;
+		height: 100vh;
+		pointer-events: none;
 		z-index: 0;
 	}
 
-	/* Content panel */
-	.content-panel {
-		position: relative;
-		z-index: 1;
-		width: min(740px, 92%);
-		display: flex;
-		flex-direction: column;
+	.scaffold-line {
+		position: absolute;
+		background: rgba(255, 255, 255, 0.07);
 	}
 
-	/* File folder tabs */
-	.tabs {
+	.scaffold-v {
+		width: 1px;
+		height: 100%;
+		top: 0;
+	}
+
+	.scaffold-v1 { left: 12%; }
+	.scaffold-v2 { right: 12%; }
+
+	.scaffold-h {
+		height: 1px;
+		width: 100%;
+		left: 0;
+	}
+
+	.scaffold-h1 { top: 10%; }
+	.scaffold-h2 { bottom: 8%; }
+
+	.crosshair {
+		position: absolute;
+		width: 11px;
+		height: 11px;
+	}
+
+	.crosshair::before,
+	.crosshair::after {
+		content: '';
+		position: absolute;
+		background: rgba(255, 255, 255, 0.15);
+	}
+
+	.crosshair::before {
+		width: 100%;
+		height: 1px;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+
+	.crosshair::after {
+		height: 100%;
+		width: 1px;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+
+	.ch-1 { top: 10%; left: 12%; transform: translate(-50%, -50%); }
+	.ch-2 { top: 10%; right: 12%; transform: translate(50%, -50%); }
+	.ch-3 { bottom: 8%; left: 12%; transform: translate(-50%, 50%); }
+	.ch-4 { bottom: 8%; right: 12%; transform: translate(50%, 50%); }
+
+	/* Name block inside window */
+	.name-block {
+		padding: 1.75rem 2.5rem 0.75rem;
+		flex-shrink: 0;
+	}
+
+	.site-name {
+		font-family: 'Aujournuit', serif;
+		font-style: normal;
+		font-size: 2.75rem;
+		font-weight: 400;
+		letter-spacing: -0.01em;
+		color: #333;
+		margin: 0;
+		line-height: 1.1;
+	}
+
+	/* App window */
+	.app-window {
+		width: 90vw;
+		max-width: 860px;
+		height: 62vh;
 		display: flex;
-		padding-left: 1.5rem;
+		flex-direction: column;
 		position: relative;
-		z-index: 2;
+		z-index: 1;
+		filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.15));
+	}
+
+	/* Tabs */
+	.tabs-container {
+		display: flex;
+		align-items: flex-end;
+		padding-left: 20px;
+		height: 40px;
+		position: relative;
+		z-index: 10;
 	}
 
 	.tab {
-		background: #8a9e8c;
-		border: none;
-		cursor: pointer;
-		font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-		font-size: 0.72rem;
+		padding: 10px 35px 8px;
+		font-family: 'IBM Plex Mono', monospace;
+		font-size: 9px;
 		font-weight: 500;
 		letter-spacing: 0.1em;
 		text-transform: uppercase;
-		color: rgba(255, 255, 255, 0.75);
-		padding: 0.5rem 1.8rem 0.65rem;
-		border-radius: 0;
+		color: #555;
+		border: none;
+		cursor: pointer;
+		margin-right: -12px;
 		position: relative;
-		top: 0;
-		margin-right: -6px;
-		margin-bottom: -1px;
+		min-width: 140px;
+		text-align: center;
 		transition: all 0.2s ease;
-		clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%);
+		clip-path: polygon(10% 0, 90% 0, 100% 100%, 0% 100%);
 	}
 
-	.tab:nth-child(1) { background: #95a897; }
-	.tab:nth-child(2) { background: #8a9e8c; }
-	.tab:nth-child(3) { background: #7d9180; }
-
-	.tab:hover {
-		color: #fff;
-		transform: translateY(-3px);
-		z-index: 2;
-	}
-
-	.tab:nth-child(1):hover { background: #a3b5a5; }
-	.tab:nth-child(2):hover { background: #98ac9a; }
-	.tab:nth-child(3):hover { background: #8b9f8e; }
+	.tab-1 { background: #EAEAE6; z-index: 3; }
+	.tab-2 { background: #CED7DE; z-index: 2; }
+	.tab-3 { background: #94A3B0; z-index: 1; }
 
 	.tab.active {
-		background: #EAEAE6;
-		color: #1a1a1a;
-		z-index: 3;
-		transform: translateY(0);
+		background: #EAEAE6 !important;
+		color: #111;
+		z-index: 5;
 		font-weight: 600;
 	}
 
-	/* Panel body — the "folder" */
-	.panel-body {
+	.tab:hover:not(.active) {
+		opacity: 0.85;
+	}
+
+	/* App body */
+	.app-body {
 		background: #EAEAE6;
-		padding: 1.75rem 2.5rem 1rem;
-		position: relative;
-		height: 560px;
+		flex: 1;
+		border-radius: 4px;
+		border-top-left-radius: 0;
 		display: flex;
 		flex-direction: column;
 		overflow: hidden;
 	}
 
-	header {
+	/* Window header */
+	.window-header {
+		padding: 0.65rem 1.5rem;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 		display: flex;
-		justify-content: flex-end;
-		margin-bottom: 1rem;
+		justify-content: space-between;
+		align-items: center;
+		background: rgba(0, 0, 0, 0.01);
 		flex-shrink: 0;
 	}
 
 	.ref {
-		font-size: 0.65rem;
-		color: #999;
-		letter-spacing: 0.08em;
+		font-size: 8px;
+		color: #666;
+		text-transform: uppercase;
+		letter-spacing: 0.2em;
 	}
 
-	h1 {
-		font-size: 1.65rem;
-		font-weight: 400;
-		letter-spacing: -0.01em;
-		margin: 0 0 0.5rem 0;
-		line-height: 1.1;
+	.header-dots {
+		display: flex;
+		gap: 6px;
 	}
 
-	.hero {
-		margin-bottom: 1.25rem;
-		padding-top: 0.5rem;
-		flex-shrink: 0;
+	.dot {
+		width: 6px;
+		height: 6px;
+		border-radius: 50%;
 	}
 
-	/* Tab content */
-	.tab-content {
-		display: none;
+	.dot-outline {
+		border: 1px solid rgba(0, 0, 0, 0.1);
+	}
+
+	.dot-filled {
+		background: rgba(0, 0, 0, 0.05);
+	}
+
+	/* Scrollable content */
+	.content-scroll {
 		flex: 1;
 		overflow-y: auto;
 		min-height: 0;
 	}
 
-	.tab-content.active {
-		display: flex;
-		flex-direction: column;
+	.content-scroll::-webkit-scrollbar { width: 4px; }
+	.content-scroll::-webkit-scrollbar-thumb { background: #CCC; }
+
+	/* Panes */
+	.pane {
+		display: none;
+		padding: 2rem 2.5rem;
+	}
+
+	.pane.active {
+		display: block;
+	}
+
+	/* Typography */
+	.mono {
+		font-family: 'IBM Plex Mono', monospace;
 	}
 
 	/* About */
+	.about-body {
+		max-width: 540px;
+	}
+
 	.about-text {
-		font-size: 0.9rem;
-		line-height: 1.65;
-		max-width: 520px;
-		color: #333;
-		margin-bottom: 0.6rem;
+		font-size: 13px;
+		line-height: 1.7;
+		color: rgba(51, 51, 51, 0.9);
+		font-weight: 400;
+		margin-bottom: 1.25rem;
 	}
 
 	.about-text a {
-		border-bottom: 1px solid #1a1a1a;
+		border-bottom: 1px solid #333;
 		transition: opacity 0.2s ease;
 	}
 
@@ -326,246 +377,230 @@ const projects = [
 		opacity: 0.5;
 	}
 
-	/* Projects table */
-	.mono {
-		font-family: 'IBM Plex Mono', monospace;
+	.divider {
+		height: 1px;
+		background: #000;
+		opacity: 0.05;
+		margin: 1.5rem 0;
 	}
 
-	.table-header {
-		display: grid;
-		grid-template-columns: 60px 1fr 1fr 30px;
-		gap: 1rem;
-		font-size: 0.7rem;
-		font-weight: 500;
-		letter-spacing: 0.12em;
+	.about-footer {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-end;
+		gap: 2rem;
+	}
+
+	.location {
+		flex: 1;
+		font-size: 9px;
 		text-transform: uppercase;
-		color: #999;
-		padding-bottom: 0.75rem;
-	}
-
-	hr {
-		border: none;
-		border-top: 1px solid #c5bfb8;
-		margin: 0 -2.5rem;
-		padding: 0 2.5rem;
-	}
-
-	.table-row {
-		display: grid;
-		grid-template-columns: 60px 1fr 1fr 30px;
-		gap: 1rem;
-		align-items: baseline;
-		padding: 1.25rem 0;
-		border-bottom: 1px solid #c5bfb8;
-		transition: opacity 0.2s ease;
-	}
-
-	.table-row:hover {
-		opacity: 0.6;
-	}
-
-	.col-no {
-		font-size: 0.85rem;
-		color: #888;
-	}
-
-	.project-name {
-		font-size: 0.95rem;
-		font-weight: 500;
-		font-style: italic;
-	}
-
-	.col-detail {
-		font-size: 0.75rem;
-		letter-spacing: 0.08em;
+		letter-spacing: 0.15em;
 		color: #666;
+		line-height: 1.8;
+		margin: 0;
 	}
 
-	.arrow {
-		font-size: 1rem;
-		opacity: 0.3;
+	.links {
+		display: flex;
+		flex-direction: column;
+		gap: 6px;
+		justify-content: flex-end;
+	}
+
+	.links a {
+		font-size: 9px;
+		text-transform: uppercase;
+		letter-spacing: 0.15em;
+		font-weight: 500;
+		color: #333;
 		transition: opacity 0.2s ease;
-		text-align: right;
 	}
 
-	.table-row:hover .arrow {
-		opacity: 1;
+	.links a:hover {
+		opacity: 0.5;
+	}
+
+	/* Projects / Archive */
+	.archive-list {
+		border-top: 1px solid rgba(0, 0, 0, 0.05);
+	}
+
+	.archive-row {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-end;
+		padding: 1.25rem 0;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+		transition: background 0.15s ease;
+	}
+
+	.archive-row:hover {
+		background: rgba(0, 0, 0, 0.01);
+	}
+
+	.entry-label {
+		font-size: 8px;
+		color: #666;
+		text-transform: uppercase;
+		letter-spacing: 0.15em;
+		margin-bottom: 0.5rem;
+		display: block;
+	}
+
+	.archive-name {
+		font-family: 'Aujournuit', serif;
+		font-size: 1.1rem;
+		font-weight: 400;
+		font-style: normal;
+		color: #333;
+		margin: 0;
+	}
+
+	.archive-detail {
+		font-size: 8px;
+		color: #666;
+		text-transform: uppercase;
+		letter-spacing: 0.15em;
+		padding-bottom: 0.25rem;
 	}
 
 	/* CV */
-	h2 {
-		font-size: 0.7rem;
-		font-weight: 500;
+	.cv-pane {
+		display: none;
+		align-items: center;
+		justify-content: center;
+		height: 100%;
+	}
+
+	.cv-pane.active {
+		display: flex;
+	}
+
+	.cv-link {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		padding: 1rem 2rem;
+		border: 1px solid rgba(0, 0, 0, 0.1);
+		transition: all 0.2s ease;
+	}
+
+	.cv-link:hover {
+		background: rgba(0, 0, 0, 0.03);
+		border-color: rgba(0, 0, 0, 0.2);
+	}
+
+	.cv-link-text {
+		font-family: 'IBM Plex Mono', monospace;
+		font-size: 10px;
 		text-transform: uppercase;
-		letter-spacing: 0.12em;
-		color: #999;
-		margin-bottom: 1.25rem;
+		letter-spacing: 0.15em;
+		color: #333;
 	}
 
-	.cv-section {
-		margin-bottom: 2rem;
+	.cv-link-arrow {
+		font-size: 1rem;
+		color: #333;
+		opacity: 0.4;
+		transition: opacity 0.2s ease;
 	}
 
-	.entry {
-		margin-bottom: 1.5rem;
-	}
-
-	.entry-header {
-		display: flex;
-		justify-content: space-between;
-		align-items: baseline;
-	}
-
-	.entry-header strong {
-		font-weight: 500;
-		font-size: 0.92rem;
-	}
-
-	.org {
-		font-size: 0.8rem;
-		color: #666;
-		margin-top: 0.25rem;
-		font-style: italic;
-	}
-
-	.date {
-		font-size: 0.8rem;
-		color: #888;
-	}
-
-	.deal-grid {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 0.5rem;
-		margin-top: 0.75rem;
-	}
-
-	.deal-card {
-		background: #dfddd9;
-		padding: 0.5rem 0.65rem;
-		transition: background 0.15s ease;
-		display: flex;
-		flex-direction: column;
-		gap: 0.15rem;
-	}
-
-	.deal-card:hover {
-		background: #d4d1cc;
-	}
-
-	.deal-name {
-		font-weight: 500;
-		font-size: 0.78rem;
-	}
-
-	.deal-desc {
-		font-size: 0.6rem;
-		letter-spacing: 0.06em;
-		color: #888;
+	.cv-link:hover .cv-link-arrow {
+		opacity: 1;
 	}
 
 	/* Footer */
-	footer {
-		margin-top: auto;
-		padding-top: 0.6rem;
-		padding-bottom: 0.25rem;
-		border-top: 1px solid #c5bfb8;
-		margin-left: -2.5rem;
-		margin-right: -2.5rem;
-		padding-left: 2.5rem;
-		padding-right: 2.5rem;
+	.window-footer {
+		padding: 0.65rem 1.5rem;
+		border-top: 1px solid rgba(0, 0, 0, 0.05);
+		background: rgba(0, 0, 0, 0.02);
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
 		flex-shrink: 0;
 	}
 
-	footer p {
-		font-size: 0.65rem;
-		color: #aaa;
-		letter-spacing: 0.08em;
+	.footer-left {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.status-dot {
+		width: 4px;
+		height: 4px;
+		border-radius: 50%;
+		background: rgba(102, 102, 102, 0.3);
+	}
+
+	.window-footer .mono {
+		font-size: 8px;
+		color: #666;
+		text-transform: uppercase;
+		letter-spacing: 0.3em;
+	}
+
+	.footer-right {
+		opacity: 0.5;
 	}
 
 	/* Mobile */
 	@media (max-width: 768px) {
 		.page-wrapper {
-			padding: 1.5rem 0.75rem;
-			align-items: flex-start;
+			padding: 1.5rem 0.5rem;
 		}
 
-		.content-panel {
-			width: 100%;
-		}
-
-		.panel-body {
-			padding: 1.5rem 1.25rem 2rem;
-			height: 75vh;
-		}
-
-		hr {
-			margin-left: -1.25rem;
-			margin-right: -1.25rem;
-			padding-left: 1.25rem;
-			padding-right: 1.25rem;
-		}
-
-		footer {
-			margin-left: -1.25rem;
-			margin-right: -1.25rem;
-			padding-left: 1.25rem;
-			padding-right: 1.25rem;
-		}
-
-		.tabs {
-			padding-left: 0.75rem;
-		}
-
-		.tab {
-			font-size: 0.65rem;
-			padding: 0.5rem 1.2rem;
-		}
-
-		.table-header,
-		.table-row {
-			grid-template-columns: 50px 1fr 30px;
-		}
-
-		.col-detail {
+		.scaffolding {
 			display: none;
 		}
 
-		h1 {
-			font-size: 1.35rem;
+		.name-block {
+			padding: 1.25rem 1.25rem 0.5rem;
 		}
 
-		.about-text {
-			font-size: 0.85rem;
+		.site-name {
+			font-size: 2rem;
 		}
 
-		.deal-grid {
-			grid-template-columns: 1fr;
+		.app-window {
+			width: 100%;
+			height: 70vh;
 		}
 
-		.entry-header {
+		.tabs-container {
+			padding-left: 10px;
+		}
+
+		.tab {
+			font-size: 8px;
+			padding: 8px 20px 6px;
+			min-width: 100px;
+			margin-right: -8px;
+		}
+
+		.pane {
+			padding: 1.5rem 1.25rem;
+		}
+
+		.about-footer {
 			flex-direction: column;
-			gap: 0.15rem;
+			gap: 1.5rem;
 		}
 
-		header {
-			margin-bottom: 1rem;
-		}
-
-		.hero {
-			margin-bottom: 1.5rem;
+		.archive-row {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 0.5rem;
 		}
 	}
 
 	@media (max-width: 400px) {
 		.tab {
-			font-size: 0.6rem;
-			padding: 0.45rem 1rem;
-			margin-right: -4px;
+			font-size: 7px;
+			padding: 7px 14px 5px;
+			min-width: 80px;
 		}
 
-		.tabs {
-			padding-left: 0.5rem;
-		}
 	}
 </style>
