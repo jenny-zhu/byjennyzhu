@@ -90,10 +90,16 @@ const projects = [
 
 					<!-- CV -->
 					<section id="cv" class="pane cv-pane">
-						<a href="/Jenny-Zhu-Resume.pdf" class="cv-link" target="_blank" rel="noopener">
-							<span class="cv-link-text">View Resume / CV</span>
-							<span class="cv-link-arrow">&rarr;</span>
-						</a>
+						<div class="cv-toolbar">
+							<a href="/Jenny-Zhu-Resume.pdf" download class="cv-download mono">
+								<span>Download</span>
+								<span class="cv-download-arrow">&darr;</span>
+							</a>
+							<button class="cv-close" aria-label="Close">&times;</button>
+						</div>
+						<div class="cv-viewer">
+							<iframe src="/Jenny-Zhu-Resume.pdf" class="cv-iframe" title="Resume – Jenny Zhu"></iframe>
+						</div>
 					</section>
 
 				</div>
@@ -108,14 +114,23 @@ const projects = [
 </Layout>
 
 <script>
+	function switchTab(tabId: string) {
+		document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+		document.querySelectorAll('.pane').forEach(p => p.classList.remove('active'));
+		const tab = document.querySelector(`.tab[data-tab="${tabId}"]`) as HTMLElement;
+		tab.classList.add('active');
+		document.getElementById(tabId)!.classList.add('active');
+		document.querySelector('.ref')!.textContent = `Ref: ${tab.getAttribute('data-ref')}`;
+	}
+
 	document.querySelectorAll('.tab').forEach(tab => {
 		tab.addEventListener('click', () => {
-			document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-			document.querySelectorAll('.pane').forEach(p => p.classList.remove('active'));
-			tab.classList.add('active');
-			document.getElementById(tab.getAttribute('data-tab')!)!.classList.add('active');
-			document.querySelector('.ref')!.textContent = `Ref: ${tab.getAttribute('data-ref')}`;
+			switchTab(tab.getAttribute('data-tab')!);
 		});
+	});
+
+	document.querySelector('.cv-close')!.addEventListener('click', () => {
+		switchTab('about');
 	});
 </script>
 
@@ -468,46 +483,82 @@ const projects = [
 	/* CV */
 	.cv-pane {
 		display: none;
-		align-items: center;
-		justify-content: center;
+		flex-direction: column;
 		height: 100%;
+		padding: 0 !important;
 	}
 
 	.cv-pane.active {
 		display: flex;
 	}
 
-	.cv-link {
+	.cv-toolbar {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 0.5rem 1rem;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+		flex-shrink: 0;
+	}
+
+	.cv-download {
 		display: flex;
 		align-items: center;
-		gap: 0.75rem;
-		padding: 1rem 2rem;
+		gap: 0.5rem;
+		font-size: 9px;
+		text-transform: uppercase;
+		letter-spacing: 0.15em;
+		color: #333;
+		padding: 0.35rem 0.75rem;
 		border: 1px solid rgba(0, 0, 0, 0.1);
 		transition: all 0.2s ease;
 	}
 
-	.cv-link:hover {
+	.cv-download:hover {
 		background: rgba(0, 0, 0, 0.03);
 		border-color: rgba(0, 0, 0, 0.2);
 	}
 
-	.cv-link-text {
-		font-family: 'IBM Plex Mono', monospace;
-		font-size: 10px;
-		text-transform: uppercase;
-		letter-spacing: 0.15em;
-		color: #333;
-	}
-
-	.cv-link-arrow {
-		font-size: 1rem;
-		color: #333;
+	.cv-download-arrow {
 		opacity: 0.4;
 		transition: opacity 0.2s ease;
 	}
 
-	.cv-link:hover .cv-link-arrow {
+	.cv-download:hover .cv-download-arrow {
 		opacity: 1;
+	}
+
+	.cv-close {
+		background: none;
+		border: 1px solid rgba(0, 0, 0, 0.1);
+		font-size: 1.1rem;
+		color: #555;
+		cursor: pointer;
+		width: 28px;
+		height: 28px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: all 0.2s ease;
+		line-height: 1;
+	}
+
+	.cv-close:hover {
+		background: rgba(0, 0, 0, 0.03);
+		border-color: rgba(0, 0, 0, 0.2);
+		color: #333;
+	}
+
+	.cv-viewer {
+		flex: 1;
+		min-height: 0;
+	}
+
+	.cv-iframe {
+		width: 100%;
+		height: 100%;
+		border: none;
+		background: #fff;
 	}
 
 	/* Footer */
