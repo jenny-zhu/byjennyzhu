@@ -157,12 +157,14 @@ const projects = [
 			const pdf = await pdfjsLib.getDocument('/Jenny-Zhu-Resume.pdf').promise;
 			for (let i = 1; i <= pdf.numPages; i++) {
 				const page = await pdf.getPage(i);
+				const baseViewport = page.getViewport({ scale: 1 });
 				const scale = 2;
 				const viewport = page.getViewport({ scale });
 				const canvas = document.createElement('canvas');
 				canvas.className = 'pdf-page';
 				canvas.width = viewport.width;
 				canvas.height = viewport.height;
+				canvas.style.aspectRatio = `${baseViewport.width} / ${baseViewport.height}`;
 				pagesContainer.appendChild(canvas);
 				await page.render({ canvasContext: canvas.getContext('2d')!, viewport }).promise;
 			}
